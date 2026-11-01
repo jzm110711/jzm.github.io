@@ -1,0 +1,588 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>信息学奥赛考试范围与知识点详细解析</title>
+<style>
+  :root{
+    --bg:#f6f8fc; --card:#ffffff; --ink:#1a2233; --ink2:#4a5568; --line:#e2e8f0;
+    --j:#2f855a; --s:#2b6cb0; --noip:#b7791f; --xuan:#805ad5; --noi:#c53030;
+    --accent:#3182ce; --shadow:0 2px 10px rgba(20,40,80,.07);
+  }
+    --bg:#0f1420; --bg2:#161d2d; --card:#1b2436; --card2:#202a3f;
+  :root{
+    --bg:#f6f8fc; --card:#ffffff; --ink:#1a2233; --ink2:#4a5568; --line:#e2e8f0;
+    --j:#2f855a; --s:#2b6cb0; --noip:#b7791f; --xuan:#805ad5; --noi:#c53030;
+    --accent:#3182ce; --shadow:0 2px 10px rgba(20,40,80,.07);
+  }
+    --bg:#f6f8fc; --card:#ffffff; --ink:#1a2233; --ink2:#4a5568; --line:#e2e8f0;
+    --j:#2f855a; --s:#2b6cb0; --noip:#b7791f; --xuan:#805ad5; --noi:#c53030;
+    --accent:#3182ce; --shadow:0 2px 10px rgba(20,40,80,.07);
+  }
+  *{box-sizing:border-box;}
+  body{
+    margin:0; font-family:-apple-system,"Segoe UI","PingFang SC","Microsoft YaHei",sans-serif;
+    background:var(--bg); color:var(--ink); line-height:1.75;
+  }
+  .wrap{max-width:1180px; margin:0 auto; padding:0 22px 80px;}
+  header.hero{
+    background:linear-gradient(135deg,#1a365d 0%,#2b6cb0 55%,#2c7a7b 100%);
+    color:#fff; padding:46px 0 38px; margin-bottom:30px;
+  }
+  header.hero .wrap{padding-bottom:0;}
+  header.hero h1{margin:0 0 10px; font-size:30px; letter-spacing:.5px;}
+  header.hero p{margin:4px 0; opacity:.92; font-size:14.5px;}
+  .meta{margin-top:14px; font-size:13px; opacity:.85;}
+  .tabs{display:flex; flex-wrap:wrap; gap:8px; margin:26px 0 18px;}
+  .tab{
+    border:1px solid var(--line); background:#fff; color:var(--ink2);
+    padding:9px 16px; border-radius:8px; cursor:pointer; font-size:14px; font-weight:600;
+    transition:.18s; box-shadow:var(--shadow);
+  }
+  .tab:hover{border-color:var(--accent); color:var(--accent);}
+  .tab.active{color:#fff; border-color:transparent;}
+  .tab[data-k="j"].active{background:var(--j);}
+  .tab[data-k="s"].active{background:var(--s);}
+  .tab[data-k="noip"].active{background:var(--noip);}
+  .tab[data-k="xuan"].active{background:var(--xuan);}
+  .tab[data-k="noi"].active{background:var(--noi);}
+  .panel{display:none;}
+  .panel.active{display:block;}
+  .overview{
+    background:var(--card); border:1px solid var(--line); border-radius:14px;
+    padding:22px 26px; margin-bottom:26px; box-shadow:var(--shadow);
+  }
+  .overview h2{margin:0 0 14px; font-size:20px;}
+  .facts{display:grid; grid-template-columns:repeat(auto-fit,minmax(190px,1fr)); gap:12px;}
+  .fact{background:var(--bg); border-radius:10px; padding:12px 14px; border:1px solid var(--line);}
+  .fact .k{font-size:12.5px; color:var(--ink2);}
+  .fact .v{font-size:15px; font-weight:700; margin-top:3px;}
+  .sec-title{
+    font-size:17px; font-weight:700; margin:26px 0 12px; padding-left:11px;
+    border-left:4px solid var(--accent);
+  }
+  .panel[data-k="j"] .sec-title{border-color:var(--j);}
+  .panel[data-k="s"] .sec-title{border-color:var(--s);}
+  .panel[data-k="noip"] .sec-title{border-color:var(--noip);}
+  .panel[data-k="xuan"] .sec-title{border-color:var(--xuan);}
+  .panel[data-k="noi"] .sec-title{border-color:var(--noi);}
+  table{
+    width:100%; border-collapse:collapse; background:var(--card);
+    border:1px solid var(--line); border-radius:12px; overflow:hidden;
+    box-shadow:var(--shadow); font-size:14px;
+  }
+  th,td{padding:10px 13px; text-align:left; border-bottom:1px solid var(--line); vertical-align:top;}
+  th{background:#eef3fa; font-weight:700; color:#2d3b52;}
+  tbody tr:last-child td{border-bottom:none;}
+  tbody tr:hover{background:#f0f6ff;}
+  td.diff{white-space:nowrap; font-variant-numeric:tabular-nums;}
+  .d{display:inline-block; min-width:22px; text-align:center; font-size:11.5px;
+     padding:1px 6px; border-radius:5px; background:#edf2f7; color:#4a5568; font-weight:600;}
+  .lvl{display:inline-block; font-size:11px; padding:2px 8px; border-radius:20px;
+       font-weight:700; color:#fff; margin-right:6px;}
+  .lvl.l1{background:#2f855a;} .lvl.l2{background:#2b6cb0;} .lvl.l3{background:#c53030;}
+  .tag{display:inline-block; font-size:11.5px; padding:2px 9px; border-radius:20px;
+       background:#ebf4ff; color:#2b6cb0; border:1px solid #bee3f8; margin:2px 4px 2px 0;}
+  .tag.adv{background:#faf5ff; color:#805ad5; border-color:#e9d8fd;}
+  .tag.hard{background:#fff5f5; color:#c53030; border-color:#fed7d7;}
+  .note{
+    background:#fffaf0; border:1px solid #f6e0b5; border-left:4px solid #dd6b20;
+    border-radius:8px; padding:12px 16px; margin:14px 0; font-size:13.5px; color:#7b4a03;
+  }
+  .tip{
+    background:#f0fff4; border:1px solid #b9e6c9; border-left:4px solid #38a169;
+    border-radius:8px; padding:12px 16px; margin:14px 0; font-size:13.5px; color:#225c3a;
+  }
+  .grid2{display:grid; grid-template-columns:1fr 1fr; gap:16px;}
+  @media(max-width:820px){ .grid2{grid-template-columns:1fr;} }
+  .box{background:var(--card); border:1px solid var(--line); border-radius:12px;
+       padding:16px 18px; box-shadow:var(--shadow);}
+  .box h3{margin:0 0 8px; font-size:15.5px;}
+  .box ul{margin:6px 0 0; padding-left:20px;}
+  .box li{margin:4px 0; font-size:13.8px; color:var(--ink2);}
+  .box li b{color:var(--ink);}
+  footer{text-align:center; color:var(--ink2); font-size:12.5px; margin-top:40px; padding-top:20px; border-top:1px solid var(--line);}
+  .toc{background:var(--card); border:1px solid var(--line); border-radius:12px; padding:16px 20px; margin-bottom:26px; box-shadow:var(--shadow); font-size:13.5px;}
+  .toc b{display:block; margin-bottom:8px;}
+  .toc a{display:inline-block; margin:3px 10px 3px 0; color:var(--accent); text-decoration:none;}
+  .toc a:hover{text-decoration:underline;}
+  details{background:var(--card); border:1px solid var(--line); border-radius:10px; padding:12px 16px; margin:10px 0; box-shadow:var(--shadow);}
+  details summary{cursor:pointer; font-weight:600; font-size:14.5px;}
+  details p{margin:8px 0 4px; font-size:13.8px; color:var(--ink2);}
+  code{background:#edf2f7; padding:1px 5px; border-radius:4px; font-size:12.8px; font-family:"SFMono-Regular",Consolas,monospace;}
+</style>
+</head>
+<body>
+
+<header class="hero">
+  <div class="wrap">
+    <h1>信息学奥赛考试范围与知识点详细解析</h1>
+    <p>覆盖 CSP-J（入门组）· CSP-S（提高组）· NOIP · 省选 · NOI 五级体系</p>
+    <p>依据《全国青少年信息学奥林匹克系列竞赛大纲（2025 年修订版）》整理</p>
+    <p class="meta">难度系数标注：<span class="lvl l1">入门级 1–5</span><span class="lvl l2">提高级 5–8</span><span class="lvl l3">NOI级 7–10</span> ｜ 高级别自动包含低级别全部知识点</p>
+  </div>
+</header>
+
+<div class="wrap">
+
+  <div class="toc">
+    <b>快速跳转</b>
+    <a href="#j">CSP-J 入门组</a>
+    <a href="#s">CSP-S 提高组</a>
+    <a href="#noip">NOIP 全国联赛</a>
+    <a href="#xuan">省选</a>
+    <a href="#noi">NOI 全国赛</a>
+    <a href="#map">五级进阶总览图</a>
+    <a href="#faq">备考常见问题</a>
+  </div>
+
+  <div class="tabs">
+    <div class="tab active" data-k="j">CSP-J 入门组</div>
+    <div class="tab" data-k="s">CSP-S 提高组</div>
+    <div class="tab" data-k="noip">NOIP 联赛</div>
+    <div class="tab" data-k="xuan">省选</div>
+    <div class="tab" data-k="noi">NOI 全国赛</div>
+  </div>
+
+  <!-- ================= CSP-J ================= -->
+  <section class="panel active" data-k="j" id="j">
+    <div class="overview">
+      <h2>CSP-J 入门组（Certified Software Professional Junior）</h2>
+      <div class="facts">
+        <div class="fact"><div class="k">面向对象</div><div class="v">小学高段 / 初中 / 零基础起步</div></div>
+        <div class="fact"><div class="k">第一轮（笔试）</div><div class="v">选择题 + 阅读程序 + 完善程序</div></div>
+        <div class="fact"><div class="k">第二轮（上机）</div><div class="v">4 道上机编程题 · C++</div></div>
+        <div class="fact"><div class="k">对应大纲层级</div><div class="v">入门级 · 难度 1–5</div></div>
+        <div class="fact"><div class="k">认证频率</div><div class="v">每年 1 次（9–10 月）</div></div>
+        <div class="fact"><div class="k">分数特征</div><div class="v">约 160/400 可达一等（各省浮动）</div></div>
+      </div>
+    </div>
+
+    <h3 class="sec-title">一、基础知识与编程环境</h3>
+    <table>
+      <thead><tr><th>知识点</th><th>难度</th><th>说明</th></tr></thead>
+      <tbody>
+        <tr><td>计算机基本构成（CPU / 内存 / I/O）</td><td class="diff"><span class="d">1</span></td><td>硬件组成、冯·诺依曼结构、存储层次</td></tr>
+        <tr><td>Windows / Linux 基本概念与常见操作</td><td class="diff"><span class="d">1–2</span></td><td>文件 / 目录的新建、复制、删除、移动</td></tr>
+        <tr><td>计算机网络与 Internet 基础</td><td class="diff"><span class="d">1–2</span></td><td>协议分层、TCP/IP、HTTP 基本概念</td></tr>
+        <tr><td>程序设计语言、编译与运行概念</td><td class="diff"><span class="d">1</span></td><td>源代码 → 编译 → 链接 → 执行流程</td></tr>
+        <tr><td>NOI 及相关活动历史与规则</td><td class="diff"><span class="d">1</span></td><td>赛事体系、认证规则、年龄要求</td></tr>
+        <tr><td>g++ 基本使用与编译命令</td><td class="diff"><span class="d">2</span></td><td>常用编译选项、头文件、名字空间</td></tr>
+      </tbody>
+    </table>
+
+    <h3 class="sec-title">二、C++ 程序设计</h3>
+    <table>
+      <thead><tr><th>知识点</th><th>难度</th><th>说明与考点</th></tr></thead>
+      <tbody>
+        <tr><td>基本数据类型与运算</td><td class="diff"><span class="d">1</span></td><td>int / long long / float / double / char / bool；算术、关系、逻辑、位运算、自增自减、三目运算</td></tr>
+        <tr><td>输入输出与格式化</td><td class="diff"><span class="d">1</span></td><td>cin/cout、scanf/printf、格式控制（初赛高频陷阱）</td></tr>
+        <tr><td>流程控制</td><td class="diff"><span class="d">1–2</span></td><td>if / switch 分支；for / while / do-while 循环与多层循环</td></tr>
+        <tr><td>数组与字符串</td><td class="diff"><span class="d">2–3</span></td><td>一维 / 二维 / 多维数组；字符数组；<code>string</code> 拼接、比较、子串、查找</td></tr>
+        <tr><td>函数与递归</td><td class="diff"><span class="d">2–4</span></td><td>定义与调用、形参实参、传值与传引用、变量作用域与生命周期、递归函数（初赛分水岭）</td></tr>
+        <tr><td>结构体、联合体、指针、引用</td><td class="diff"><span class="d">2–3</span></td><td>自定义类型；指针基本概念（&amp; 取地址、* 解引用）；引用（2025 新增）</td></tr>
+        <tr><td>文件操作</td><td class="diff"><span class="d">2</span></td><td>文本 / 二进制文件读写、freopen 文件重定向（复赛必备）</td></tr>
+        <tr><td>常用 STL</td><td class="diff"><span class="d">2–3</span></td><td><code>min / max / swap / sort</code>；容器 <code>stack / queue / list / vector</code>（2025 强化要求）</td></tr>
+      </tbody>
+    </table>
+
+    <h3 class="sec-title">三、数据结构</h3>
+    <table>
+      <thead><tr><th>知识点</th><th>难度</th><th>说明与考点</th></tr></thead>
+      <tbody>
+        <tr><td>线性结构</td><td class="diff"><span class="d">2–3</span></td><td>链表（单 / 双 / 循环）、栈（FILO：括号匹配、表达式求值、出栈序列）、队列（FIFO：BFS 基础、循环队列）</td></tr>
+        <tr><td>简单树</td><td class="diff"><span class="d">3–4</span></td><td>树的基本概念（节点、根、叶、深度、高度、边数 = n−1）；二叉树定义与存储；前 / 中 / 后序遍历（超级高频）</td></tr>
+        <tr><td>特殊树</td><td class="diff"><span class="d">3–4</span></td><td>完全二叉树与数组存储、哈夫曼树与哈夫曼编码、二叉搜索树（BST）</td></tr>
+        <tr><td>简单图</td><td class="diff"><span class="d">3</span></td><td>图的定义、无向 / 有向 / 带权图、度与入度出度；邻接矩阵、邻接表存储（2025 纳入入门级）</td></tr>
+      </tbody>
+    </table>
+
+    <h3 class="sec-title">四、算法</h3>
+    <table>
+      <thead><tr><th>知识点</th><th>难度</th><th>说明与考点</th></tr></thead>
+      <tbody>
+        <tr><td>入门算法</td><td class="diff"><span class="d">1–2</span></td><td>枚举法、模拟法（复赛 T1 必考，细节决定成败）</td></tr>
+        <tr><td>基础算法思想</td><td class="diff"><span class="d">3–4</span></td><td>贪心、递推、递归、二分查找（前提：有序）、倍增、前缀和、差分（2025 由提高级下放）</td></tr>
+        <tr><td>数值处理</td><td class="diff"><span class="d">3–4</span></td><td>高精度加 / 减 / 乘 / 除（初赛计算题常客）</td></tr>
+        <tr><td>排序算法</td><td class="diff"><span class="d">3</span></td><td>冒泡、选择、插入、计数排序的原理、稳定性与复杂度（能模拟中间状态）</td></tr>
+        <tr><td>搜索算法</td><td class="diff"><span class="d">4–5</span></td><td>深度优先搜索 DFS、广度优先搜索 BFS、Flood Fill 泛洪算法</td></tr>
+        <tr><td>图论基础</td><td class="diff"><span class="d">4–5</span></td><td>DFS / BFS 遍历、连通性</td></tr>
+        <tr><td>动态规划入门</td><td class="diff"><span class="d">4–5</span></td><td>DP 基本思想（最优子结构、重叠子问题）、一维 DP、简单背包 DP、简单区间 DP（复赛难点拉分）</td></tr>
+      </tbody>
+    </table>
+
+    <h3 class="sec-title">五、数学与其他</h3>
+    <table>
+      <thead><tr><th>知识点</th><th>难度</th><th>说明与考点</th></tr></thead>
+      <tbody>
+        <tr><td>数及其运算</td><td class="diff"><span class="d">1</span></td><td>自然数、整数、有理数、实数运算；二进制 / 八进制 / 十进制 / 十六进制互转</td></tr>
+        <tr><td>初等数学</td><td class="diff"><span class="d">1–2</span></td><td>初中代数（整式、方程、比例、函数）、几何（角、三角形、四边形、圆、面积周长）</td></tr>
+        <tr><td>初等数论</td><td class="diff"><span class="d">3–4</span></td><td>整除、因数、倍数、质数与合数、取余（"同余"改"取余"）、整数唯一分解定理、辗转相除法、埃氏筛与线性筛</td></tr>
+        <tr><td>离散与组合数学</td><td class="diff"><span class="d">2–3</span></td><td>集合、加法 / 乘法原理、排列组合、杨辉三角</td></tr>
+        <tr><td>ASCII 码与编码</td><td class="diff"><span class="d">1–2</span></td><td>ASCII 对照表、字符与数值转换</td></tr>
+      </tbody>
+    </table>
+
+    <div class="note"><b>2025 大纲入门组关键变动：</b>新增「引用」；新增「前缀和」与「差分」算法策略；「同余」改为「取余」；删除「格雷码」；图论基础（邻接矩阵 / 邻接表）明确纳入；STL 容器操作要求强化。</div>
+    <div class="tip"><b>备考权重参考：</b>C++ 语法约 30%、基础算法约 40%（模拟 / 贪心 / 搜索 / DP 四类占复赛总分 80% 以上）、数据结构约 20%、数学基础约 10%。近三年真题数据显示：T1 必考枚举与模拟，必须稳拿满分。</div>
+  </section>
+
+  <!-- ================= CSP-S ================= -->
+  <section class="panel" data-k="s" id="s">
+    <div class="overview">
+      <h2>CSP-S 提高组（Certified Software Professional Senior）</h2>
+      <div class="facts">
+        <div class="fact"><div class="k">面向对象</div><div class="v">初中高段 / 高中 · 已有入门基础</div></div>
+        <div class="fact"><div class="k">第一轮（笔试）</div><div class="v">同 CSP-J 题型 · 代码阅读难度显著提升</div></div>
+        <div class="fact"><div class="k">第二轮（上机）</div><div class="v">4 道上机编程题 · C++</div></div>
+        <div class="fact"><div class="k">对应大纲层级</div><div class="v">提高级 · 难度 5–8</div></div>
+        <div class="fact"><div class="k">认证频率</div><div class="v">每年 1 次（9–10 月）</div></div>
+        <div class="fact"><div class="k">重要意义</div><div class="v">NOIP 报名的前置门槛</div></div>
+      </div>
+    </div>
+
+    <h3 class="sec-title">一、基础知识与编程环境（升级项）</h3>
+    <table>
+      <thead><tr><th>知识点</th><th>难度</th><th>说明</th></tr></thead>
+      <tbody>
+        <tr><td>Linux 终端文件与目录操作</td><td class="diff"><span class="d">5</span></td><td>命令行操作，开发环境全面转向 Linux</td></tr>
+        <tr><td>文本编辑工具（Vim 等）</td><td class="diff"><span class="d">5</span></td><td>赛场无图形界面 IDE，需熟练终端编辑</td></tr>
+        <tr><td>g++ 优化编译选项</td><td class="diff"><span class="d">5</span></td><td><code>-O2</code> 等优化开关</td></tr>
+        <tr><td>GDB 调试工具</td><td class="diff"><span class="d">6</span></td><td>断点、单步、变量监视、段错误定位</td></tr>
+        <tr><td><code>time</code> 命令与性能分析</td><td class="diff"><span class="d">5</span></td><td>运行时长与复杂度实测</td></tr>
+      </tbody>
+    </table>
+
+    <h3 class="sec-title">二、C++ 程序设计（升级项）</h3>
+    <table>
+      <thead><tr><th>知识点</th><th>难度</th><th>说明</th></tr></thead>
+      <tbody>
+        <tr><td>类 class 与运算符重载</td><td class="diff"><span class="d">6</span></td><td>面向对象核心概念（OOP 思想）</td></tr>
+        <tr><td>STL 容器与迭代器</td><td class="diff"><span class="d">5–6</span></td><td>set / multiset、map / multimap、deque、priority_queue、bitset（2025 新增）</td></tr>
+        <tr><td>pair / tuple</td><td class="diff"><span class="d">5</span></td><td>组合数据类型与多关键字排序</td></tr>
+        <tr><td>常用算法模板函数</td><td class="diff"><span class="d">5–6</span></td><td>sort 自定义比较、unique、lower_bound、upper_bound、next_permutation 等</td></tr>
+      </tbody>
+    </table>
+
+    <h3 class="sec-title">三、数据结构（升级项）</h3>
+    <table>
+      <thead><tr><th>知识点</th><th>难度</th><th>说明</th></tr></thead>
+      <tbody>
+        <tr><td>高级线性结构</td><td class="diff"><span class="d">6–7</span></td><td>双端队列 deque、单调队列、单调栈、ST 表（RMQ）</td></tr>
+        <tr><td>集合与森林</td><td class="diff"><span class="d">5–6</span></td><td>并查集（路径压缩、按秩合并）</td></tr>
+        <tr><td>特殊树</td><td class="diff"><span class="d">6–7</span></td><td>二叉堆、树状数组、线段树、Trie 字典树、平衡树</td></tr>
+        <tr><td>哈希表</td><td class="diff"><span class="d">6</span></td><td>数值 / 字符串哈希、冲突处理</td></tr>
+        <tr><td>常见图</td><td class="diff"><span class="d">6–7</span></td><td>稀疏图、二分图、欧拉图、DAG、连通分量</td></tr>
+      </tbody>
+    </table>
+
+    <h3 class="sec-title">四、算法（升级项）</h3>
+    <table>
+      <thead><tr><th>知识点</th><th>难度</th><th>说明</th></tr></thead>
+      <tbody>
+        <tr><td>复杂度分析</td><td class="diff"><span class="d">5–6</span></td><td>时间复杂度、空间复杂度精确分析</td></tr>
+        <tr><td>算法策略</td><td class="diff"><span class="d">6</span></td><td>离散化、扫描线（2025 新增）、分治</td></tr>
+        <tr><td>排序算法</td><td class="diff"><span class="d">5–6</span></td><td>归并、快速、堆、桶、基数排序的原理与适用场景</td></tr>
+        <tr><td>字符串算法</td><td class="diff"><span class="d">5–7</span></td><td>KMP（字符串匹配）、Manacher（最长回文子串，2025 由 NOI 级下放）</td></tr>
+        <tr><td>搜索优化</td><td class="diff"><span class="d">6–7</span></td><td>剪枝优化、记忆化搜索、启发式搜索、双向 BFS</td></tr>
+        <tr><td>动态规划</td><td class="diff"><span class="d">6–8</span></td><td>多维 DP、树形 DP、状态压缩 DP、区间 DP 及其常用优化</td></tr>
+        <tr><td>图论算法</td><td class="diff"><span class="d">6–7</span></td><td>最小生成树（Prim / Kruskal）、最短路（Dijkstra / Bellman-Ford / SPFA / Floyd）、拓扑排序、LCA 最近公共祖先、树上差分</td></tr>
+      </tbody>
+    </table>
+
+    <h3 class="sec-title">五、数学与其他（升级项）</h3>
+    <table>
+      <thead><tr><th>知识点</th><th>难度</th><th>说明</th></tr></thead>
+      <tbody>
+        <tr><td>初等数学</td><td class="diff"><span class="d">5–6</span></td><td>高中代数与几何</td></tr>
+        <tr><td>初等数论</td><td class="diff"><span class="d">6–7</span></td><td>同余式、欧拉定理与欧拉函数、费马小定理、威尔逊定理、裴蜀定理、模逆元、扩展欧几里得、中国剩余定理</td></tr>
+        <tr><td>离散与组合数学</td><td class="diff"><span class="d">6–7</span></td><td>多重集合与多重集排列组合、错排列、圆排列、鸽巢原理、二项式定理、容斥原理、卡特兰数</td></tr>
+        <tr><td>线性代数</td><td class="diff"><span class="d">6–7</span></td><td>向量与矩阵概念、向量运算、矩阵初等变换、矩阵加减乘转置、特殊矩阵、高斯消元</td></tr>
+      </tbody>
+    </table>
+
+    <div class="note"><b>2025 大纲提高组关键变动：</b>STL 新增 <code>bitset</code>；算法策略新增「扫描线」；字符串新增「Manacher」；去掉「次小生成树」；新增「多维动态规划」；调整「等价关系与等价类」表述。</div>
+  </section>
+
+  <!-- ================= NOIP ================= -->
+  <section class="panel" data-k="noip" id="noip">
+    <div class="overview">
+      <h2>NOIP 全国青少年信息学奥林匹克联赛（National Olympiad in Informatics in Provinces）</h2>
+      <div class="facts">
+        <div class="fact"><div class="k">面向对象</div><div class="v">高中生为主</div></div>
+        <div class="fact"><div class="k">考试形式</div><div class="v">纯上机编程（无笔试）</div></div>
+        <div class="fact"><div class="k">题量与时长</div><div class="v">4 题 · 4.5 小时</div></div>
+        <div class="fact"><div class="k">对应大纲层级</div><div class="v">提高级 · 难度 5–8</div></div>
+        <div class="fact"><div class="k">开考时间</div><div class="v">每年 11 月底 · 全国统一卷</div></div>
+        <div class="fact"><div class="k">允许语言</div><div class="v">仅 C++</div></div>
+      </div>
+    </div>
+
+    <div class="note"><b>报名前提：</b>必须先取得 CSP-S 提高组第二轮有效成绩才有报名资格。评奖按省内划线，分省一 / 省二 / 省三；获省一才有资格参加省队选拔（省选）。</div>
+
+    <p>NOIP 的知识范围与 CSP-S 高度重合，命题强度介于 CSP-S 第二轮与省选之间。其本质是「提高级知识的综合实战化」，下表按高频板块梳理实战要点。</p>
+
+    <h3 class="sec-title">核心考察板块与典型题型</h3>
+    <table>
+      <thead><tr><th>板块</th><th>必掌握内容</th><th>实战要点</th></tr></thead>
+      <tbody>
+        <tr><td>C++ 语法打底</td><td>变量、数组、字符串、函数、递归、结构体、位运算、long long、高精度、复杂度估算</td><td>输入输出效率、边界与初始化是失分重灾区</td></tr>
+        <tr><td>基础算法</td><td>模拟、枚举、贪心、递推、二分、分治、前缀和、差分、双指针</td><td>T1/T2 主战场，须保证无 Bug 快速通过</td></tr>
+        <tr><td>搜索</td><td>DFS、BFS、剪枝、记忆化搜索</td><td>中档题高频，常与 DP 混用</td></tr>
+        <tr><td>动态规划</td><td>线性 DP、背包（01 / 完全 / 多重）、区间 DP、简单树形 DP、简单状压 DP</td><td>拉分核心，占分权重最大</td></tr>
+        <tr><td>数据结构</td><td>栈、队列、链表、哈希、二叉树、BST、堆、并查集；简单 STL</td><td>线段树 / 树状数组依年份出现</td></tr>
+        <tr><td>图论</td><td>最短路（Dijkstra / SPFA / Floyd）、最小生成树、拓扑排序、连通块、简单树上问题</td><td>重点板块，常作为 T3/T4</td></tr>
+        <tr><td>数论与组合</td><td>质数、约数、gcd/lcm、同余、快速幂、排列组合、简单容斥</td><td>多为辅助工具嵌入大题</td></tr>
+        <tr><td>字符串</td><td>字符串哈希、KMP、简单 Trie</td><td>年份性考点</td></tr>
+      </tbody>
+    </table>
+
+    <h3 class="sec-title">考场策略</h3>
+    <div class="grid2">
+      <div class="box"><h3>时间分配</h3><ul>
+        <li><b>前 30 分钟：</b>通读全部题目，判断各题难度与部分分结构</li>
+        <li><b>T1 / T2：</b>力求一次写对，不做过度优化</li>
+        <li><b>T3 / T4：</b>优先拿部分分（暴力 / 小数据 / 特殊性质）</li>
+        <li><b>最后 30 分钟：</b>检查文件读写、数组大小、freopen、输出格式</li>
+      </ul></div>
+      <div class="box"><h3>提分技巧</h3><ul>
+        <li><b>对拍：</b>用暴力程序与优化程序互相对拍，定位错解</li>
+        <li><b>部分分意识：</b>分数据范围写多个解法，宁可 70 分不交 0 分</li>
+        <li><b>复杂度估算：</b>先算清再写，避免超时</li>
+        <li><b>文件与命名：</b>严格按题目要求建文件夹与文件名</li>
+      </ul></div>
+    </div>
+  </section>
+
+  <!-- ================= 省选 ================= -->
+  <section class="panel" data-k="xuan" id="xuan">
+    <div class="overview">
+      <h2>省选 · 省队选拔（Provincial Team Selection）</h2>
+      <div class="facts">
+        <div class="fact"><div class="k">参赛资格</div><div class="v">NOIP 省一等奖获得者</div></div>
+        <div class="fact"><div class="k">考试形式</div><div class="v">两天上机（部分省份含笔试）</div></div>
+        <div class="fact"><div class="k">目标</div><div class="v">选拔省队成员 → 参加 NOI 全国赛</div></div>
+        <div class="fact"><div class="k">知识覆盖</div><div class="v">提高级全量 + NOI 级核心</div></div>
+        <div class="fact"><div class="k">难度特征</div><div class="v">介于 NOIP 与 NOI 之间</div></div>
+        <div class="fact"><div class="k">竞争本质</div><div class="v">强省省队线极高，省选分数决定 NOI 名额</div></div>
+      </div>
+    </div>
+
+    <p>省选没有独立的「官方大纲」，其知识范围由 NOI 大纲的 <b>NOI 级（7–10）核心子集</b>与提高级全量构成。命题特点是：模型抽象要求高、多个算法拼接、代码实现长、边界与细节要求苛刻。</p>
+
+    <h3 class="sec-title">必掌握知识体系（由提高级延伸）</h3>
+    <div class="grid2">
+      <div class="box"><h3>数据结构进阶</h3><ul>
+        <li><b>线段树全家桶：</b>懒标记、区间最值 / 求和、权值线段树</li>
+        <li><b>平衡树：</b>Treap / Splay / 替罪羊树</li>
+        <li><b>树链剖分：</b>重链剖分处理树上路径与子树</li>
+        <li><b>可持久化：</b>主席树（可持久化线段树）</li>
+        <li><b>树上技巧：</b>LCA、树上差分、虚树</li>
+      </ul></div>
+      <div class="box"><h3>字符串全家桶</h3><ul>
+        <li><b>KMP / Manacher：</b>模式匹配与回文</li>
+        <li><b>AC 自动机：</b>多模式匹配</li>
+        <li><b>后缀数组 SA：</b>后缀排序与 height 数组</li>
+        <li><b>后缀自动机 SAM：</b>子串统计与本质不同子串</li>
+        <li><b>扩展 KMP：</b>最长公共前后缀</li>
+      </ul></div>
+      <div class="box"><h3>图论高阶</h3><ul>
+        <li><b>网络流：</b>最大流（Dinic / ISAP）、最小割、费用流</li>
+        <li><b>二分图：</b>匈牙利算法、KM 算法、匹配与覆盖</li>
+        <li><b>强连通分量：</b>Tarjan、边双 / 点双连通分量</li>
+        <li><b>2-SAT、差分约束、基环树</b></li>
+        <li><b>最短路 / MST 进阶变形</b></li>
+      </ul></div>
+      <div class="box"><h3>动态规划进阶</h3><ul>
+        <li><b>状态压缩 DP：</b>棋盘 / 插头 DP</li>
+        <li><b>树形 DP：</b>换根、树上背包、长链剖分优化</li>
+        <li><b>斜率优化 / 单调队列优化 / 四边形不等式</b></li>
+        <li><b>数位 DP、期望 DP、概率 DP</b></li>
+        <li><b>决策单调性、分治优化</b></li>
+      </ul></div>
+    </div>
+
+    <h3 class="sec-title">必须掌握的数学工具</h3>
+    <table>
+      <thead><tr><th>领域</th><th>具体知识点</th><th>典型应用</th></tr></thead>
+      <tbody>
+        <tr><td>高阶数论</td><td>原根与指标、大步小步（BSGS）、莫比乌斯反演、杜教筛、二次剩余、狄利克雷卷积</td><td>数论分块、GCD 计数、莫反套路</td></tr>
+        <tr><td>组合计数</td><td>容斥原理、卡特兰数、斯特林数、错排列、生成函数、二项式反演</td><td>集合划分、染色、方案计数</td></tr>
+        <tr><td>群论与计数</td><td>Burnside 引理、Pólya 定理、置换群</td><td>等价类计数、染色方案</td></tr>
+        <tr><td>博弈论</td><td>Nim 博弈、SG 函数</td><td>公平组合游戏</td></tr>
+        <tr><td>概率与期望</td><td>期望线性性、条件概率、贝叶斯</td><td>随机游走、概率 DP</td></tr>
+        <tr><td>计算几何</td><td>点线面位置关系、凸包、半平面交、面积</td><td>平面扫描、旋转卡壳</td></tr>
+      </tbody>
+    </table>
+
+    <div class="tip"><b>省选训练核心：</b>不追求「见过模板」，而要做到「复杂模型能抽象 + 多算法能拼接 + 长代码能一次写对」。建议每个 NOI 级核心算法配 2 道以上 OJ 真题，并按专题做整卷限时训练。</div>
+  </section>
+
+  <!-- ================= NOI ================= -->
+  <section class="panel" data-k="noi" id="noi">
+    <div class="overview">
+      <h2>NOI 全国青少年信息学奥林匹克竞赛（National Olympiad in Informatics）</h2>
+      <div class="facts">
+        <div class="fact"><div class="k">参赛资格</div><div class="v">省队成员（含 A/B 类名额）</div></div>
+        <div class="fact"><div class="k">考试形式</div><div class="v">两天上机（每天 5 小时 3 题）</div></div>
+        <div class="fact"><div class="k">对应层级</div><div class="v">NOI 级 · 难度 7–10</div></div>
+        <div class="fact"><div class="k">奖项与升学</div><div class="v">金牌前 50 名 → 国家集训队 / 保送清北</div></div>
+        <div class="fact"><div class="k">银牌</div><div class="v">强基计划破格入围</div></div>
+        <div class="fact"><div class="k">同层级活动</div><div class="v">CTS 国家队选拔、冬令营、国家队集训</div></div>
+      </div>
+    </div>
+
+    <div class="note"><b>大纲的「上粗下细」原则：</b>为保证我国选手在 IOI 中的竞争力，NOI 级大纲不严格限定具体算法，命题具有充分开放性。下表为历届命题高频出现的高阶知识体系，属备考必练而非穷尽清单。</div>
+
+    <h3 class="sec-title">一、高级数据结构</h3>
+    <table>
+      <thead><tr><th>知识点</th><th>难度</th><th>说明</th></tr></thead>
+      <tbody>
+        <tr><td>块状链表</td><td class="diff"><span class="d">8</span></td><td>分块思想维护序列</td></tr>
+        <tr><td>树链剖分</td><td class="diff"><span class="d">8</span></td><td>重链剖分，树上路径与子树维护</td></tr>
+        <tr><td>动态树 LCT</td><td class="diff"><span class="d">10</span></td><td>Link-Cut Tree，维护森林连通与链信息</td></tr>
+        <tr><td>树套树</td><td class="diff"><span class="d">9</span></td><td>线段树套平衡树，二维区间查询</td></tr>
+        <tr><td>k-d 树</td><td class="diff"><span class="d">9</span></td><td>多维空间划分与剪枝</td></tr>
+        <tr><td>虚树</td><td class="diff"><span class="d">8</span></td><td>对关键节点建树，压缩无关信息</td></tr>
+        <tr><td>可合并堆：左偏树</td><td class="diff"><span class="d">8</span></td><td>可并堆，支持堆合并</td></tr>
+        <tr><td>可合并堆：二项堆</td><td class="diff"><span class="d">10</span></td><td>斐波那契堆变体</td></tr>
+        <tr><td>可持久化数据结构</td><td class="diff"><span class="d">8–9</span></td><td>可持久化线段树（主席树）、可持久化 Trie 等</td></tr>
+      </tbody>
+    </table>
+
+    <h3 class="sec-title">二、高级算法策略</h3>
+    <table>
+      <thead><tr><th>知识点</th><th>难度</th><th>说明</th></tr></thead>
+      <tbody>
+        <tr><td>分块</td><td class="diff"><span class="d">8</span></td><td>根号分治，平衡整块与散块</td></tr>
+        <tr><td>离线处理思想</td><td class="diff"><span class="d">8</span></td><td>按询问排序、CDQ 分治、莫队</td></tr>
+        <tr><td>复杂分治思想</td><td class="diff"><span class="d">9</span></td><td>点分治、边分治、CDQ 分治</td></tr>
+        <tr><td>平衡规划思想</td><td class="diff"><span class="d">9</span></td><td>轻重路径、阈值划分</td></tr>
+        <tr><td>构造思想</td><td class="diff"><span class="d">9</span></td><td>存在性证明 + 显式构造</td></tr>
+        <tr><td>OOP 面向对象设计</td><td class="diff"><span class="d">8</span></td><td>复杂项目的整体架构能力</td></tr>
+      </tbody>
+    </table>
+
+    <h3 class="sec-title">三、高级图论</h3>
+    <table>
+      <thead><tr><th>知识点</th><th>难度</th><th>说明</th></tr></thead>
+      <tbody>
+        <tr><td>网络流 / 费用流</td><td class="diff"><span class="d">8–9</span></td><td>最大流、最小割、上下界、最小费用最大流</td></tr>
+        <tr><td>最小树形图</td><td class="diff"><span class="d">9</span></td><td>有向图最小生成树（朱刘算法）</td></tr>
+        <tr><td>2-SAT</td><td class="diff"><span class="d">8</span></td><td>布尔可满足性建模</td></tr>
+        <tr><td>一般图匹配</td><td class="diff"><span class="d">9–10</span></td><td>带花树算法</td></tr>
+        <tr><td>支配集 / 独立集 / 覆盖集</td><td class="diff"><span class="d">8–9</span></td><td>图参数与树上独立集 DP</td></tr>
+        <tr><td>基环树</td><td class="diff"><span class="d">8</span></td><td>环上 DP + 树上 DP</td></tr>
+      </tbody>
+    </table>
+
+    <h3 class="sec-title">四、字符串算法</h3>
+    <table>
+      <thead><tr><th>知识点</th><th>难度</th><th>说明</th></tr></thead>
+      <tbody>
+        <tr><td>扩展 KMP</td><td class="diff"><span class="d">8</span></td><td>最长公共前后缀 Z 函数</td></tr>
+        <tr><td>有穷自动机概念</td><td class="diff"><span class="d">8</span></td><td>自动机建模思想（2025 调整为掌握概念）</td></tr>
+        <tr><td>AC 自动机</td><td class="diff"><span class="d">8</span></td><td>多模式匹配 + Fail 树</td></tr>
+        <tr><td>后缀数组 SA</td><td class="diff"><span class="d">8</span></td><td>后缀排序、height 数组、DC3 / SA-IS</td></tr>
+        <tr><td>后缀树</td><td class="diff"><span class="d">9</span></td><td>压缩 Trie 上的子树统计</td></tr>
+        <tr><td>后缀自动机 SAM</td><td class="diff"><span class="d">10</span></td><td>子串结构核心，统计与匹配利器</td></tr>
+      </tbody>
+    </table>
+
+    <h3 class="sec-title">五、数学与其他（NOI 级）</h3>
+    <table>
+      <thead><tr><th>领域</th><th>知识点</th><th>难度</th></tr></thead>
+      <tbody>
+        <tr><td>高阶数论</td><td>原根和指数、BSGS、狄利克雷卷积、二次剩余、二次同余式</td><td class="diff"><span class="d">9–10</span></td></tr>
+        <tr><td>组合与群论</td><td>群与置换群、母函数（生成函数）、莫比乌斯反演、Burnside 引理与 Pólya 定理、斯特林数、Prüfer 序列</td><td class="diff"><span class="d">8–10</span></td></tr>
+        <tr><td>线性代数</td><td>逆矩阵、行列式、向量空间与线性相关、基与线性基</td><td class="diff"><span class="d">8–9</span></td></tr>
+        <tr><td>高等数学</td><td>微分与积分、泰勒级数、FFT / NTT 快速傅里叶变换</td><td class="diff"><span class="d">9–10</span></td></tr>
+        <tr><td>概率论</td><td>概率基本概念、离散随机变量期望与方差、条件概率、贝叶斯公式</td><td class="diff"><span class="d">8–9</span></td></tr>
+        <tr><td>博弈论</td><td>Nim 博弈、SG 函数</td><td class="diff"><span class="d">8</span></td></tr>
+        <tr><td>最优化</td><td>单纯形法（线性规划）</td><td class="diff"><span class="d">9</span></td></tr>
+        <tr><td>计算几何</td><td>点线面位置判定、图形面积、二维凸包、半平面交</td><td class="diff"><span class="d">8–9</span></td></tr>
+        <tr><td>信息论</td><td>熵、互信息、条件熵、相对熵</td><td class="diff"><span class="d">9</span></td></tr>
+        <tr><td>复杂度理论</td><td>信息复杂度、描述复杂度、通信复杂度概念</td><td class="diff"><span class="d">9–10</span></td></tr>
+      </tbody>
+    </table>
+
+    <div class="note"><b>2025 大纲 NOI 级关键变动：</b>去掉「跳跃表」「二维线段树」；调整「虚树」难度值；「Manacher」下放到提高级；「有穷自动机」调整为掌握概念；线性代数新增「基与线性基」。</div>
+  </section>
+
+  <!-- ================= 总览图 ================= -->
+  <section id="map">
+    <h3 class="sec-title">五级进阶总览图</h3>
+    <table>
+      <thead><tr>
+        <th>层级</th><th>对应赛事</th><th>难度</th><th>典型知识画像</th>
+      </tr></thead>
+      <tbody>
+        <tr>
+          <td><span class="lvl l1">入门级</span></td>
+          <td>CSP-J</td>
+          <td class="diff">1–5</td>
+          <td><span class="tag">语法</span><span class="tag">枚举/模拟</span><span class="tag">贪心/二分</span><span class="tag">栈/队列/链表</span><span class="tag">树与图基础</span><span class="tag">DFS/BFS</span><span class="tag">简单DP</span><span class="tag">质数/gcd/组合</span></td>
+        </tr>
+        <tr>
+          <td><span class="lvl l2">提高级</span></td>
+          <td>CSP-S · NOIP</td>
+          <td class="diff">5–8</td>
+          <td><span class="tag adv">线段树/树状数组</span><span class="tag adv">并查集/堆/Trie</span><span class="tag adv">KMP/Manacher</span><span class="tag adv">最短路/MST</span><span class="tag adv">树形/状压DP</span><span class="tag adv">欧拉/CRT/逆元</span><span class="tag adv">容斥/卡特兰</span><span class="tag adv">高斯消元</span></td>
+        </tr>
+        <tr>
+          <td><span class="lvl l3">NOI 级</span></td>
+          <td>NOI · 省选 · CTS · 冬令营</td>
+          <td class="diff">7–10</td>
+          <td><span class="tag hard">LCT/树套树/k-d树</span><span class="tag hard">主席树/平衡树</span><span class="tag hard">网络流/费用流</span><span class="tag hard">SAM/后缀数组</span><span class="tag hard">莫比乌斯反演/BSGS</span><span class="tag hard">FFT/Pólya</span><span class="tag hard">计算几何/单纯形</span><span class="tag hard">线性基/期望DP</span></td>
+        </tr>
+      </tbody>
+    </table>
+    <p style="font-size:13px;color:var(--ink2);margin-top:10px;">进阶路径：语言与环境 → 基础数据结构 → 基础算法 → 图论与 DP → 数学强化 → 高级数据结构 / 高级图论 / 高级数学 → 综合建模训练。</p>
+  </section>
+
+  <!-- ================= FAQ ================= -->
+  <section id="faq">
+    <h3 class="sec-title">备考常见问题</h3>
+    <details>
+      <summary>五级赛事之间是什么关系？必须逐级参加吗？</summary>
+      <p>CSP-J 与 CSP-S 是同一场认证的两个组别，可任选或同时报名，不存在必须先过 J 再过 S 的规定。CSP-S 第二轮有效成绩是报名 NOIP 的前置条件。NOIP 获省一等奖后获得省选资格，省选进入省队后参加 NOI。这是一条递进通道，但入门组不是提高组的强制门槛。</p>
+    </details>
+    <details>
+      <summary>为什么大纲写「高级别自动包含低级别」？</summary>
+      <p>CSP-S / NOIP 的命题范围天然包含 CSP-J 全部知识点，NOI 级同样包含提高级内容。因此学习路线应当是「打牢本级基础再向上走」，而不是跳级刷题。入门级阶段碰后缀自动机、LCT 既浪费时间又容易打击信心。</p>
+    </details>
+    <details>
+      <summary>第一轮（笔试）和第二轮（上机）分别怎么备考？</summary>
+      <p>第一轮靠概念清晰度与代码阅读速度：选择题是分数基石，阅读程序题要在草稿纸上画表记录变量变化，递归题画调用栈，切勿心算。第二轮靠实战：按专题刷真题、限时整卷、练习对拍与文件读写。考场不提供编译器，所有推演必须手算完成。</p>
+    </details>
+    <details>
+      <summary>初赛有哪些「必须背下来」的硬知识？</summary>
+      <p>2 的 0–20 次幂数值、卡特兰数前十个值（1,1,2,5,14,42,132,429,1430,4862）、常见排序算法的稳定性与最好/平均/最坏复杂度、STL 容器操作复杂度（vector 尾部 O(1)、set/map 增删查 O(log n)）、原码反码补码表示范围、网络协议分层。</p>
+    </details>
+    <details>
+      <summary>2025 修订版大纲最大的变化是什么？</summary>
+      <p>一是「下放」：前缀和、差分由提高级下放入门级，Manacher 由 NOI 级下放到提高级，意味着入门选手要更早接触实用算法，考察更重理解而非背模板。二是「减负」：删除格雷码、跳跃表、二维线段树、次小生成树等低性价比内容。三是数学地位上升：组合、数论、线性代数交叉融合成为命题重点。</p>
+    </details>
+  </section>
+
+  <footer>
+    依据《全国青少年信息学奥林匹克系列竞赛大纲（2025 年修订版）》整理 · 难度系数采用官方标注 · 各省份晋级线与评奖规则请以当年 CCF 官方通知为准<br>
+    本页仅作学习参考，不构成官方文件。
+  </footer>
+</div>
+
+<script>
+  document.querySelectorAll('.tab').forEach(function(tab){
+    tab.addEventListener('click', function(){
+      var k = tab.dataset.k;
+      document.querySelectorAll('.tab').forEach(function(t){ t.classList.remove('active'); });
+      document.querySelectorAll('.panel').forEach(function(p){ p.classList.remove('active'); });
+      tab.classList.add('active');
+      document.querySelector('.panel[data-k="'+k+'"]').classList.add('active');
+      window.scrollTo({top: tab.closest('.wrap').offsetTop, behavior:'smooth'});
+    });
+  });
+</script>
+</body>
+</html>
